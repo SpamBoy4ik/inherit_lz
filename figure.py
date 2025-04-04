@@ -9,14 +9,14 @@ class Square:
         self.border_width = border_width
         self.filled = filled
 
-    def info(self):
+    def info(self): # вывод информации
         print(f'\nЦвет: {self.color}\nТощина границы: {self.border_width}\nФигура залита внутри: {self.filled}\nДлины сторон: {self.side_size_a}', end=' ')
     
-    def patch_figure(self):
+    def patch_figure(self): # делает рисунок
         return Rectangle((0.5, 0.5), self.side_size_a, self.side_size_a,
                           facecolor=self.color, edgecolor='black', linewidth=self.border_width, fill=self.filled)
 
-    def draw(self):
+    def draw(self): # рисует
         plt.xlim(-1, self.side_size_a * 2)
         plt.ylim(-1, self.side_size_a * 2)
         ax = plt.gca()
@@ -36,7 +36,7 @@ class Quadrilateral(Square):
         self.side_size_c = abs(side_size_c)
         self.side_size_d = abs(side_size_d)
     
-    def info(self):
+    def info(self): # вывод информации
         super().info()
         print(self.side_size_b, self.side_size_c, self.side_size_d)
     
@@ -58,12 +58,12 @@ class Quadrilateral(Square):
         coordinates.append((self.side_size_d * cos(angle),self.side_size_d * sin(angle)))
         return coordinates
         
-    def patch_figure(self):
+    def patch_figure(self): # делает рисунок
         coordinates = self.coordinates()
         return Polygon([coordinates[0], coordinates[1], coordinates[2], coordinates[3]],
                         facecolor = self.color, edgecolor = 'black', linewidth = self.border_width, fill = self.filled)
     
-    def draw(self):
+    def draw(self): # рисует
         if self.check_sides() == False:
             return print('Этот четырехугольник нельзя постороить.')
         super().draw()
